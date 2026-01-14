@@ -15,7 +15,7 @@ return new class extends Migration
             $table->enum('floor', ['ground', 'first', 'second', 'third']);
             $table->enum('status', ['available', 'booked', 'maintenance'])->default('available');
             $table->decimal('price', 8, 2);
-            $table->string('image')->nullable(); // optional
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
