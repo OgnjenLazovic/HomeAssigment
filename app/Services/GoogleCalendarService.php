@@ -14,7 +14,7 @@ class GoogleCalendarService
     public function __construct()
     {
         $client = new Client();
-        $client->setAuthConfig(storage_path('app/palazzo-de-la-sengle-9866b4a65211.json'));
+        $client->setAuthConfig(storage_path('app/palazzo-de-la-sengle-e2416428d0d7.json'));
         $client->addScope(Calendar::CALENDAR);
 
         $this->service = new Calendar($client);

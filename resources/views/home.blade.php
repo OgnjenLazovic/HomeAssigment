@@ -45,9 +45,13 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="mb-4">Rooms</h2>
     @if(auth()->check() && auth()->user()->role === 'admin')
-        <a href="{{  route('rooms.create') }}"class="btn btn-outline-light">+ Add New Room</a>
+    <div class="mb-4 text-end">
+        <a href="{{ route('rooms.create') }}" class="btn btn-outline-light">
+            Add New Room
+        </a>
+    </div>
+@endif
 
-    @endif
     </div>
     <form method="GET" action="{{ route('rooms.index') }}">
         <div class="card bg-dark text-light border-secondary mb-4 p-3">
@@ -96,51 +100,60 @@
     </form>
 
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach($rooms as $room)
-            <div class="col">
-                <div class="card h-100 bg-secondary text-light border-0 shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Room {{ $room->room_number }}</h5>
-                        <p class="card-text">
-                            Name: {{ $room->room_name }}<br>
-                            Floor: {{ ucfirst($room->floor) }}<br>
-                            Price: €{{ number_format($room->price, 2) }}<br>
-                            Status:
-                            @if($room->status === 'available')
-                                <span class="badge bg-success">Available</span>
-                                <div class="mt-2">
-                                    <a href="{{ route('bookings.create', $room->id) }}" class="btn btn-sm btn-outline-light">
-                                        Book Now
-                                    </a>
-                                </div>
-                            @elseif($room->status === 'booked')
-                                <span class="badge bg-danger">Booked</span>
-                            @else
-                                <span class="badge bg-warning text-dark">Maintenance</span>
-                            @endif
-                        </p>
-                    </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach($rooms as $room)
+        <div class="col">
+            <div class="card h-100 bg-secondary text-light border-0 shadow">
+                
+                <!-- Card Image -->
+                <img src="{{ $room->image ? asset('storage/' . $room->image) : asset('images/placeholder.jpg') }}" 
+                     class="card-img-top" alt="Room Image">
 
-                    @if(auth()->check() && auth()->user()->role === 'admin')
-                        <div class="card-footer bg-dark text-end border-top border-secondary">
-                            <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-sm btn-outline-light">
-                                Edit
-                            </a>
-                            <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
-                                    Delete
-                                </button>
-                            </form>
-                        </div>
-                    @endif
-
+                <div class="card-body">
+                    <h5 class="card-title">Room {{ $room->room_number }}</h5>
+                    <p class="card-text">
+                        Name: {{ $room->room_name }}<br>
+                        Floor: {{ ucfirst($room->floor) }}<br>
+                        Price: €{{ number_format($room->price, 2) }}<br>
+                        Status:
+                        @if($room->status === 'available')
+                            <span class="badge bg-success">Available</span>
+                            <div class="mt-2">
+                                <a href="{{ route('bookings.create', $room->id) }}" class="btn btn-sm btn-outline-light">
+                                    Book Now
+                                </a>
+                            </div>
+                        @elseif($room->status === 'booked')
+                            <span class="badge bg-danger">Booked</span>
+                        @else
+                            <span class="badge bg-warning text-dark">Maintenance</span>
+                        @endif
+                    </p>
                 </div>
+
+                @if(auth()->check() && auth()->user()->role === 'admin')
+                    <div class="card-footer bg-dark text-end border-top border-secondary">
+                        <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-sm btn-outline-light">
+                            Edit
+                        </a>
+                        <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                @endif
+
             </div>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
+</div>
+
+ 
+
+
 
 </div>
 
