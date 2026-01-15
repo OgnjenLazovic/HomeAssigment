@@ -57,6 +57,11 @@
                             Status:
                             @if($room->status === 'available')
                                 <span class="badge bg-success">Available</span>
+                                <div class="mt-2">
+                                <a href="{{ route('bookings.create', $room->id) }}" class="btn btn-sm btn-outline-light">
+                                    Book Now
+                                </a>
+                                </div>
                             @elseif($room->status === 'booked')
                                 <span class="badge bg-danger">Booked</span>
                             @else
