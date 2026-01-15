@@ -13,9 +13,10 @@ return new class extends Migration
             $table->integer('room_number')->unique();
             $table->string('room_name');
             $table->enum('floor', ['ground', 'first', 'second', 'third']);
-            $table->enum('status', ['available', 'booked', 'maintenance'])->default('available');
+            $table->enum('status', ['available', 'maintenance'])->default('available');
             $table->decimal('price', 8, 2);
             $table->string('image')->nullable();
+            $table->string('calendar_id')->nullable();
             $table->timestamps();
         });
     }
