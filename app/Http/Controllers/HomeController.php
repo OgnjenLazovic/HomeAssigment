@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $rooms = Room::all(); // get all rooms
-        return view('home', compact('rooms')); // pass to Blade
+        $rooms = Room::all(); 
+        return view('home', compact('rooms')); 
     }
 }
