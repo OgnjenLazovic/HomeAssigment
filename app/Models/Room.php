@@ -15,7 +15,8 @@ class Room extends Model
         'floor',
         'status',
         'price',
-        'image'
+        'image',
+        'calendar_id',
     ];
     public function bookings()
     {

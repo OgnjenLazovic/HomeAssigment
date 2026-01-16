@@ -42,5 +42,7 @@ class BookingController extends Controller
 
         return redirect()->route('home')->with('success', 'Booking confirmed!');
     }
+    
+
 }
 

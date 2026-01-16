@@ -66,7 +66,7 @@ class RoomController extends Controller
         ]);
 
         $googleCalendar = $calendar->createCalendar('Room ' . $request->room_number);
-
+           
 
         $room = Room::create([
             'room_number' => $request->room_number,
@@ -76,6 +76,7 @@ class RoomController extends Controller
             'price' => $request->price,
             'image' => $request->file('image')?->store('rooms', 'public'),
             'calendar_id' => $googleCalendar->id,
+
         ]);
 
         return redirect()->route('rooms.index')->with('success', 'Room created successfully!');

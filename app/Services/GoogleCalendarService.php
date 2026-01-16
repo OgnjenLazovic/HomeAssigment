@@ -20,15 +20,23 @@ class GoogleCalendarService
         $this->service = new Calendar($client);
     }
 
-    public function createCalendar($summary)
-    {
-        $calendar = new GoogleCalendar([
-            'summary' => $summary,
-            'timeZone' => 'Europe/Rome',
-        ]);
 
-        return $this->service->calendars->insert($calendar);
-    }
+
+
+public function createCalendar($summary)
+{
+
+    $calendar = new GoogleCalendar();
+    $calendar->setSummary($summary);
+    $calendar->setTimeZone('Europe/Rome');
+
+
+    $createdCalendar = $this->service->calendars->insert($calendar);
+
+
+    return $createdCalendar;
+}
+
 
     public function checkAvailability($calendarId, $start, $end)
     {

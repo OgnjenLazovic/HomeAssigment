@@ -105,8 +105,8 @@
         <div class="col">
             <div class="card h-100 bg-secondary text-light border-0 shadow">
                 
-                <!-- Card Image -->
-                <img src="{{ $room->image ? asset('storage/' . $room->image) : asset('images/placeholder.jpg') }}" 
+                
+                <img src="{{ $room->image ? asset('storage/' . $room->image) : asset('storage/rooms/placeholder.jpg') }}" 
                      class="card-img-top" alt="Room Image">
 
                 <div class="card-body">
